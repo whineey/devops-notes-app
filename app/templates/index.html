@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DevOps Notes App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+            max-width: 700px;
+            margin: 40px auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            cursor: pointer;
+        }
+        .note {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .timestamp {
+            font-size: 12px;
+            color: gray;
+        }
+    </style>
+</head>
+<body>
+    <h1>DevOps Notes App</h1>
+
+    <form method="POST" action="/add">
+        <input type="text" name="content" placeholder="Write a note..." required>
+        <button type="submit">Add</button>
+    </form>
+
+    {% for note in notes %}
+    <div class="note" style="display:flex; justify-content:space-between; align-items:center;">
+
+        <div>
+            {% if note[2] %}
+                <span style="text-decoration: line-through; color: gray;">
+                    {{ note[1] }}
+                </span>
+            {% else %}
+                {{ note[1] }}
+            {% endif %}
+
+            <div class="timestamp">
+                {{ note[3].strftime("%d.%m.%Y %H:%M") }}
+            </div>
+        </div>
+
+        <div style="display:flex; gap:8px;">
+            <form method="POST" action="/toggle/{{ note[0] }}">
+                <button type="submit">
+                    {% if note[2] %}Undo{% else %}Done{% endif %}
+                </button>
+            </form>
+
+            <form method="POST" action="/delete/{{ note[0] }}">
+                <button type="submit" style="background:#dc2626;">
+                    Delete
+                </button>
+            </form>
+        </div>
+
+    </div>
+    {% endfor %}
+
+</body>
+</html>
