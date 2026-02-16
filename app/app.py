@@ -32,13 +32,38 @@ with app.app_context():
 
 @app.route("/")
 def index():
+    filter_type = request.args.get("filter", "all")
+
     conn = get_connection()
     cur = conn.cursor()
-    cur.execute("SELECT id, content, completed, created_at FROM notes ORDER BY created_at DESC;")
+
+    if filter_type == "active":
+        cur.execute("""
+            SELECT id, content, completed, created_at 
+            FROM notes 
+            WHERE completed = FALSE
+            ORDER BY created_at DESC;
+        """)
+    elif filter_type == "completed":
+        cur.execute("""
+            SELECT id, content, completed, created_at 
+            FROM notes 
+            WHERE completed = TRUE
+            ORDER BY created_at DESC;
+        """)
+    else:
+        cur.execute("""
+            SELECT id, content, completed, created_at 
+            FROM notes 
+            ORDER BY created_at DESC;
+        """)
+
     notes = cur.fetchall()
     cur.close()
     conn.close()
-    return render_template("index.html", notes=notes)
+
+    return render_template("index.html", notes=notes, current_filter=filter_type)
+
 
 @app.route("/add", methods=["POST"])
 def add_note():
