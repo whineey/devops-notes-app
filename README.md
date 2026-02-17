@@ -79,7 +79,7 @@ Terraform:
 - HTTPS via Let's Encrypt
 - Docker image vulnerability scanning
 - Monitoring (Prometheus + Grafana)
-- Fail2Ban on VM
+- VM Hardening
 - Move to container orchestrator (Kubernetes / Azure Container Apps)
 
 ## Purpose
