@@ -1,10 +1,8 @@
-# DevOps Notes App 🚀
+# DevOps Notes App
 
 Simple full-stack notes application built with Flask and PostgreSQL,
 containerized with Docker, deployed to Azure VM using Terraform,
 and automated via CI/CD pipelines in GitHub Actions.
-
----
 
 ## Architecture
 
@@ -17,9 +15,7 @@ and automated via CI/CD pipelines in GitHub Actions.
 - Infrastructure: Terraform (Azure VM provisioning)
 - OS Provisioning: Cloud-init (Docker installation & setup)
 
----
-
-## 🚀 Features
+## Features
 
 - Add multi-line notes
 - Mark notes as completed
@@ -27,8 +23,6 @@ and automated via CI/CD pipelines in GitHub Actions.
 - Filter: All / Active / Completed
 - Timestamp (formatted)
 - Dockerized production-ready setup (Gunicorn + Nginx)
-
----
 
 ## CI Pipeline
 
@@ -43,8 +37,6 @@ Steps:
    - `latest`
    - commit SHA tag
 
----
-
 ## CD Pipeline
 
 Triggered after successful CI.
@@ -58,8 +50,6 @@ Steps:
 Deployment location on server:
  - /opt/notes-app
 
----
-
 ## Infrastructure
 
 Provisioned using Terraform:
@@ -72,13 +62,9 @@ Provisioned using Terraform:
 - Linux VM (Ubuntu Server)
 - Cloud-init installs Docker and creates 'deploy' user with provided public SSH key
 
----
-
 ## Secrets Handling
 
 Secrets are stored in GitHub Repository Secrets
-
----
 
 ## Production Deployment
 
@@ -95,8 +81,6 @@ Terraform:
 - Monitoring (Prometheus + Grafana)
 - Fail2Ban on VM
 - Move to container orchestrator (Kubernetes / Azure Container Apps)
-
----
 
 ## Purpose
 
