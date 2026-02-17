@@ -29,3 +29,9 @@ Thumbs.db
 # Build artifacts
 dist/
 build/
+
+# Terraform
+infrastructure/.terraform/*
+infrastructure/*.tfvars
+infrastructure/*.tfstate
+infrastructure/*.tfstate.*
